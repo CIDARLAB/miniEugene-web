@@ -1,0 +1,100 @@
+<div id="orientation-constraints">
+                        <!-- ORIENTATION RULES -->
+                        <h4>Orientation Constraints</h4>
+                        Orientation Constraints restrict the orientation (forward or reverse) of genetic components.
+                        <table class="table table-striped">  
+                            <thead>  
+                                <tr>  
+                                    <th>Constraint</th>  
+                                    <th>Description</th>  
+                                    <th>Examples</th>  
+                                </tr>  
+                            </thead>  
+                            <tbody>  
+                                <tr>  
+                                    <td style="font-size:12px">
+                                    	<strong>ALL_FORWARD</strong>
+                                    </td>  
+                                    <td style="font-size:12px">
+                                    	all components in the design must have a forward orientation.
+                                    </td>  
+                                    <td style="font-size:12px">
+                                        ALL_FORWARD
+                                    </td>  
+                                </tr>  
+                                <tr>  
+                                    <td style="font-size:12px">
+                                    	<strong>ALL_REVERSE</strong>
+                                    </td>  
+                                    <td style="font-size:12px">
+                                    	all components in the design must have a reverse orientation.
+                                    </td>  
+                                    <td style="font-size:12px">
+                                        ALL_REVERSE
+                                    </td>  
+                                </tr>  
+                                <tr>  
+                                    <td style="font-size:12px">
+	                                    <strong>FORWARD</strong> α
+	                                    <br/>
+	                                    <strong>ALL_FORWARD</strong> α
+                                    </td>  
+                                    <td style="font-size:12px">
+                                    	all α must be forward oriented
+                                    	<br/>
+                                    	(<strong>FORWARD</strong> is equivalent to <strong>ALL_FORWARD</strong>)
+                                    </td>  
+                                    <td style="font-size:12px">
+                                        FORWARD promoter
+                                        <br/>
+                                        FORWARD GFP
+                                    </td>  
+                                </tr>  
+                                <tr>  
+                                    <td style="font-size:12px">
+	                                    <strong>REVERSE</strong> α
+	                                    <br/>
+	                                    <strong>ALL_REVERSE</strong> α
+                                    </td>  
+                                    <td style="font-size:12px">
+                                    	all α must be reverse oriented
+                                    	<br/>
+                                        (<strong>REVERSE</strong> is equivalent to <strong>ALL_REVERSE</strong>)
+                                    </td>  
+                                    <td style="font-size:12px">
+                                        REVERSE promoter
+                                        <br/>
+                                        REVERSE GFP
+                                    </td>  
+                                </tr>  
+                                <tr>  
+                                    <td style="font-size:12px">
+                                    	α <strong>SAME_ORIENTATION</strong> β
+                                    	<br/>
+                                    	α <strong>ALL_SAME_ORIENTATION</strong> β
+                                    </td>  
+                                    <td style="font-size:12px">
+                                    	if α and β appear in the design, then ALL occurrences of α <br/>
+                                    	must have the SAME ORIENTATION as β.<br/> 
+                                        (<strong>SAME_ORIENTATION</strong> is equivalent to <strong>ALL_SAME_ORIENTATION</strong>)
+                                    </td>
+                                    <td style="font-size:12px">
+                                        Promoter SAME_ORIENTATION Terminator
+                                        pBad ALL_SAME_ORIENTATION t7
+                                    </td>  
+                                </tr>  
+                                <tr>  
+                                    <td style="font-size:12px">
+                                    	<strong>ALTERNATE_ORIENTATION</strong>
+                                    </td>  
+                                    <td style="font-size:12px">
+                                    	the orientation of the design's component must alternate.
+                                    </td>  
+                                    <td style="font-size:12px">
+                                        ALTERNATE_ORIENTATION
+                                    </td>  
+                                </tr>  
+                            </tbody>
+                        </table>
+
+</div>

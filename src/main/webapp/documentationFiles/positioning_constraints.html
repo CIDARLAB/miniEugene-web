@@ -1,0 +1,93 @@
+                <div id="rules">
+                        <!-- POSITIONAL RULES + TABLE-->
+                        <h4>Positioning Constraints</h4>
+                        Positioning Constraints restrict the location of the genetic elements' occurrences. 
+                        
+                        <table class="table table-striped">  
+                            <thead>  
+                                <tr>  
+                                    <th>Constraint</th>  
+                                    <th>Description</th>  
+                                    <th>Examples</th>  
+                                </tr>  
+                            </thead>  
+                            <tbody>  
+                                <tr>  
+                                    <td style="font-size:12px"><strong>STARTSWITH</strong> α</td>  
+                                    <td style="font-size:12px">if α occurs, then α must occur at the first position</td>  
+                                    <td style="font-size:12px">
+                                    	STARTSWITH p
+                                    </td>  
+                                </tr>  
+                                <tr>  
+                                    <td style="font-size:12px"><strong>ENDSWITH</strong> α</td>  
+                                    <td style="font-size:12px">if α occurs, then α must occur at the last position                                    
+                                    <td style="font-size:12px">
+										ENDSWITH t
+									</td>  
+                                </tr>
+                                <tr>  
+                                    <td style="font-size:12px">
+                                        α <strong>AFTER</strong> β<br/>
+                                        α <strong>ALL_AFTER</strong> β
+                                    </td>  
+                                    <td style="font-size:12px">If α appears in the design, then <br/>all β components must precede all α components.<br/>
+                                    <br/>(<strong>BEFORE</strong> is equivalent to <strong>ALL_BEFORE</strong>)
+                                    </td>  
+                                    <td style="font-size:12px">
+                                        c AFTER r<br/>
+                                        t ALL_AFTER p
+                                    </td>
+                                </tr>
+                                <tr>  
+                                    <td style="font-size:12px">α <strong>SOME_AFTER</strong> β</td>  
+                                    <td style="font-size:12px">If α appears in the design, then at least<br/>
+                                        one β component must precede at least one α component.
+                                    </td>  
+                                    <td style="font-size:12px">p SOME_AFTER t</td>  
+                                </tr>
+                                <tr>  
+                                    <td style="font-size:12px">
+                                        α <strong>BEFORE</strong> β<br/>
+                                        α <strong>ALL_BEFORE</strong> β
+                                    </td>  
+                                    <td style="font-size:12px">If α appears in the design, then <br/>
+                                    	all α components must precede all β components
+                                        <br/>
+                                        (<strong>BEFORE</strong> is equivalent to <strong>ALL_BEFORE</strong>)
+                                    </td>  
+                                    <td style="font-size:12px">
+                                        r BEFORE c<br/>
+                                        p ALL_BEFORE t
+                                    </td>  
+                                </tr>
+                                <tr>  
+                                    <td style="font-size:12px">α <strong>SOME_BEFORE</strong> β</td>  
+                                    <td style="font-size:12px">If α appears in the design, then at least<br/>
+                                        one α component must precede at least one β component
+                                    </td>  
+                                    <td style="font-size:12px">t SOME_BEFORE p</td>  
+                                </tr>
+                                <tr>  
+                                    <td style="font-size:12px">α <strong>NEXTTO</strong> β<br/>
+                                        α <strong>ALL_NEXTTO</strong> β
+                                    </td>  
+                                    <td style="font-size:12px">If α appears in the design, then all β components must appear
+                                        immediately before or after all α components<br/>
+                                                (<strong>NEXTTO</strong> is equivalent to <strong>ALL_NEXTTO</strong>)
+                                    </td>  
+                                    <td style="font-size:12px">r NEXTTO p
+                                        r ALL_NEXTTO c
+                                    </td>  
+                                </tr>
+                                <tr>  
+                                    <td style="font-size:12px">α <strong>SOME_NEXTTO</strong> β</td>  
+                                    <td style="font-size:12px">If α appears in the design, then <br/>
+                                    at least one β component must appear immediately before <br/>
+                                    or after at least one α component</td>  
+                                    <td style="font-size:12px">p SOME_NEXTTO t</td>  
+                                </tr>
+                            </tbody>  
+                        </table>
+                        <hr/>
+</div>

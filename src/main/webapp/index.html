@@ -1,0 +1,191 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>miniEugene</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="shortcut icon" href="images/icon.ico?v2">
+        <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+        <link href="css/bootstrap-responsive.min.css" rel="stylesheet" media="screen">
+        <link rel="stylesheet" href="css/codemirror.css">
+        <link rel="stylesheet" href="css/neat.css">
+        <script src="jsLibraries/jquery-1.9.1.min.js"></script>
+        <script src="jsLibraries/jquery-ui.min.js"></script>
+
+        <style>
+            ul.device {
+                list-style-type: none;
+            }
+            ul.device li{
+                display: inline-block;
+            }
+            .thumbnail{
+                background-color: white;
+            }
+            .selected{opacity: 0.5}
+            .rotatedText{
+                -webkit-transform: rotate(-90deg); 
+                -moz-transform: rotate(-90deg); 
+                -ms-transform: rotate(-90deg); 
+                -o-transform: rotate(-90deg); 
+                transform: rotate(-90deg);
+            }  
+            .fill { 
+    			height: 100%;
+			}         
+        </style>  
+    </head>
+    <body>
+        <div class="navbar navbar-fixed-top navbar-inverse">
+            <div class="navbar-inner"> 
+                <ul class="nav">
+                    <!-- <li><a href="eugenelab.html">Design</a></li> -->
+                    <li class="active"><a href="index.html">miniEugene</a></li>
+                    <li><a href="documentation.html">How to</a></li>
+                    <li><a href="downloads.html">Downloads</a></li>
+                    <li><a href="forum.html">Q&amp;A Forum</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="page-header" style="margin-top:50px">
+            <h1>miniEugene <small>Constraint-based Design of Synthetic Biological Systems</small></h1> 
+        </div>
+        <div class="row-fluid fill">
+            <div class="span2" style="font-size:11px">
+            <b>Updates</b>:<br/>
+            <i>05/02/2014</i>
+            <ul>
+            	<li>Improved Pigeon Visualization</li>
+            	<li>50,000 Solutions max.</li>
+            </ul>
+            <i>04/13/2014</i>
+            <ul>
+            	<li>EQUALS rule updated</li>
+            	<li>Bug Fixes</li>
+            </ul>
+            <i>04/07/2014</i>
+            <ul>
+            	<li><a href="documentation.html">Templating Constraints</a></li>
+            	<li>WITH rule updated</li>
+            </ul>
+            <i>04/06/2014</i>
+            <ul>
+            	<li>DRIVES rule updated</li>
+            </ul>
+            <i>03/31/2014</i>
+            <ul>
+            	<li><a href="http://cidar.bu.edu:8080/miniEugene-XmlRpc/" target="_blank">XML-RPC Web Service</a></li>
+            </ul>
+            <i>03/26/2014</i>
+            <ul>
+            	<li>SAME_COUNT</li>
+            	<li>SAME_ORIENTATION</li>
+            	<li>ALTERNATE_ORIENTATION</li>
+            	<li>Conjunctive normal form</li>
+            </ul>
+            </div>
+            <div class="span4">
+                <div class="tabbable">
+                    <ul id="dataTableHeader" class="nav nav-tabs nav-pills">
+                        <li class="pull-left">
+	                        Length of the Design: 
+							<select name="sizeOfDesign" id="sizeOfDesign" style="width:50px"></select>
+						    <script>
+						    var $select = $('#sizeOfDesign');
+						    for ( var i = 1; i <= 50; i++ ) {
+						        $select.append($('<option/>', { value: i, text: i }));
+						    }
+						   	</script>                        
+                        </li>
+                        <li class="pull-right">
+                        	<button style="width:150px" id="runButton" class="btn btn-danger">Solve</button>
+                        </li>
+                    </ul>
+
+                    <div id="dataTableContent" class="tab-content">
+                        <div class="tab-pane active" id="textEditorTab">
+                            <div class="accordion" id="accoridion">
+                                <div class="accordion-group">
+                                    <!--  
+                                    <div class="accordion-heading">
+                                        <h5><a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#editorArea">
+                                                Editor
+                                            </a>
+                                        </h5>
+                                    </div>-->
+                                    <div id="editorArea" class="accordion-body collapse in">
+                                        <div class="accordion-inner">
+                                            <textarea id="textEditor">CONTAINS p</textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>    
+                        </div>   
+                    </div>    
+                </div>         
+             </div>
+
+            <div class="span5">
+                      <div id="output" class="well">
+                          <div class="tabbable">
+                              <ul class="nav nav-tabs" id="outputTabs">
+                                  <li id="visual" class="active"><a href="#outputImageTab" data-toggle="tab">Visual</a></li>
+                                  <li id="eugene"><a href="#outputEugeneTab" data-toggle="tab">Eugene</a></li>
+                                  <li id="sbol"><a href="#outputSBOLTab" data-toggle="tab">SBOL</a></li>
+                                  <!-- NOT NEEDED FOR THE TIME BEING 
+                                  		<li id="act"><a href="#outputACTTab" data-toggle="tab">ACT</a></li> 
+                                  	-->
+                                  <li id="stats"><a href="#outputStatsTab" data-toggle="tab">Statistics</a></li>
+                                  <li id="exception"><a href="#outputExceptionTab" data-toggle="tab">Errors</a></li>
+                              </ul>
+
+                              <div class="tab-content">
+                                  <div class="tab-pane active" id="outputImageTab">
+                                      <div id="outputImageArea"></div>
+                                  </div>
+                                  <div class="tab-pane" id="outputEugeneTab">
+                                      <div id="outputEugeneArea"></div>
+                                  </div>
+                                  <div class="tab-pane" id="outputSBOLTab">
+                                      <div id="outputSBOLArea"></div>
+                                  </div>
+                                  <!--  
+                                  <div class="tab-pane" id="outputACTTab">
+                                      <div id="outputACTArea"></div>
+                                  </div>
+                                  -->
+                                  <div class="tab-pane" id="outputStatsTab">
+                                      <div id="outputStatsArea"></div>
+                                  </div>
+                                  <div class="tab-pane" id="outputExceptionTab">
+                                      <div id="outputExceptionArea"></div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+        	</div>
+		</div>
+		<!--  Footer (BU + License) -->
+		<div class="footer row text-center">
+	        CIDAR Group, Dept. of Electrical and Computer Engineering, Boston University, 2014
+			<br/>
+	        <!--  Licencse -->
+			<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">
+				<img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by-sa/4.0/88x31.png" />
+			</a>
+			<br />
+			This work is licensed under a 
+				<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">
+					Creative Commons Attribution-ShareAlike 4.0 International License
+				</a>.		
+		</div>
+
+        <script src="jsLibraries/bootstrap.min.js"></script>
+        <script src="scripts/miniEugeneController.js"></script>
+        <script src="jsLibraries/codemirror.js"></script>
+        <script src="jsLibraries/eugene.js"></script>
+
+        <div id="tester"></div>
+    </body>
+</html>

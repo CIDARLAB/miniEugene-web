@@ -1,0 +1,27 @@
+// first, select 4 from the "Size of the Design" drop-down list
+
+// CONSTRAINTS
+
+// COUNTING 
+contains p1
+contains r1
+contains c1
+contains t1
+
+// forward p => p before c
+not forward p1 or p1 before r1
+not forward p1 or r1 before c1
+not forward p1 or c1 before t1
+
+// reverse p => p after c
+not reverse p1 or t1 before c1
+not reverse p1 or c1 before r1
+not reverse p1 or r1 before p1
+
+// same orientations
+p1 same_orientation c1
+p1 same_orientation r1
+p1 same_orientation t1
+
+// p1 is either forward or reverse oriented
+all_forward p1 or all_reverse p1

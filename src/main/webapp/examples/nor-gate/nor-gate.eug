@@ -1,0 +1,18 @@
+// set the Length of the Design to 6
+// COUNTING
+contains pIn1
+contains pIn2
+contains cRepressor
+contains pOut
+contains t
+contains cOut
+
+// INTERACTIONS
+in1 induces pIn1
+in2 induces pIn2
+
+pIn1 drives cRepressor
+pIn2 drives cRepressor
+pOut drives cOut
+
+cRepressor represses pOut

@@ -1,0 +1,64 @@
+<div id="grammar">
+<h4>The Grammar of the miniEugene Language</h4>
+
+<p>The provided syntax in this Web-based miniEugene UI is a subset of miniEugene's grammar. 
+
+<pre>
+script                = (cnf)+
+
+cnf                   = constraint ("or" cnf)? LINE_FEED 
+
+constraint            = ("NOT")? 
+                        ( 
+                        ( (operand)? primitive_constraint (operand)? ) 
+                        | 
+                          templating 
+                        )
+
+operand               = ID | INT | index
+
+index                 = "[" INT "]"
+
+constraint_operator   = ["contains"|"CONTAINS"| ... |"drives"|"DRIVES"]
+
+templating            = (ID)? template_operator list_of_ids
+
+template_operator     = ["template"|"TEMPLATE"|"sequence"|"SEQUENCE"]
+
+list_of_ids           = ( "[" selection "]" | ID ) ("," list_of_ids)?
+
+selection             = ID ( "|" selection )? 
+
+ID                    = [a-zA-Z][a-zA-Z0-9]*
+
+INT                   = [0-9]+
+</pre> 
+
+<br/>
+
+<!--  
+<pre>
+script                = (length)? (cnf)+
+
+length                = "N" "=" number "."
+
+cnf                   = constraint ("or" constraint)* "." 
+
+constraint            = ("NOT")? ( (id)? constraint_operator (id)? ) | templating
+
+templating            = templating_constraint list_of_ids
+
+templating_constraint = (name)? tconstraint_operator list_of_parameters
+
+tconstraint_operator  = ["template"|"TEMPLATE"|"sequence"|"SEQUENCE"]
+
+list_of_parameters    = ( "[" selection "]" | id ) ("," list_of_parameters)?
+
+selection             = id ( "|" selection )? 
+
+id                    = [a-zA-Z]+
+
+number                = [0-9]+
+</pre> 
+-->
+</div>

@@ -1,0 +1,96 @@
+                <div id="rules">
+                        <h4>Counting Constraints</h4>
+                        <p>Counting Constraints restrict the number of occurrences of genetic elements in a design. 
+                        </p>
+                        <table class="table table-striped">  
+                            <thead>  
+                                <tr>  
+                                    <th>Constraint</th>  
+                                    <th>Description</th>  
+                                    <th>Examples</th>  
+                                </tr>  
+                            </thead>  
+                            <tbody>  
+                                <tr>  
+                                    <td style="font-size:12px"><strong>CONTAINS</strong> α</td>  
+                                    <td style="font-size:12px">α must occur at least once</td>  
+                                    <td style="font-size:12px">
+                                        <p>CONTAINS Gene</p>
+                                        <p>CONTAINS GFP</p>
+                                    </td>  
+                                </tr>  
+                                <tr>  
+                                    <td style="font-size:12px"><strong>NOTCONTAINS</strong> α</td>  
+                                    <td style="font-size:12px">α must NOT occur in the design</td>  
+                                    <td style="font-size:12px">
+                                        <p>NOTCONTAINS RBS</p>
+                                        <p>NOTCONTAINS BBa_J61100</p>
+                                    </td>  
+                                </tr>  
+
+                                <tr>  
+                                    <td style="font-size:12px"> α <strong>EXACTLY</strong> <i>n</i> </td>  
+                                    <td style="font-size:12px">the number of occurrences of α must be equal to <i>n</i></td>
+                                    <td style="font-size:12px">
+                                    	<p>TranscriptionalUnit EXACTLY 4</p>  
+                                    	<p>Reporter EXACTLY 1</p>
+                                    </td>  
+                                </tr>  
+                                <tr>  
+                                    <td style="font-size:12px"> α <strong>NOTEXACTLY</strong> <i>n</i> </td>  
+                                    <td style="font-size:12px">the number of occurrences of α must be not equal to <i>n</i></td>
+                                    <td style="font-size:12px">
+                                    	<p>Operon NOTEXACTLY 4</p> 
+                                    	<p>Reporter NOTEXACTLY 1</p>
+                                    </td>  
+                                </tr>  
+                                <tr>  
+                                    <td style="font-size:12px">α <strong>MORETHAN</strong> <i>n</i></td>  
+                                    <td style="font-size:12px">α must occur more than <i>n</i> times</td>  
+                                    <td style="font-size:12px">
+                                    	<p>Operon MORETHAN 1</p>	
+                                    	<p>Promoter MORETHAN 1</p>
+                                    </td>
+                                </tr>
+                                <tr>  
+                                    <td style="font-size:12px">α <strong>NOTMORETHAN</strong> <i>n</i></td>  
+                                    <td style="font-size:12px">α must not occur more than <i>n</i> times</td>  
+                                    <td style="font-size:12px">
+                                    	<p>Terminator NOTMORETHAN 1</p>
+                                    	<p>GFP NOTMORETHAN 1</p>
+                                    </td>  
+                                </tr>
+                                <tr>  
+                                    <td style="font-size:12px">α <strong>SAME_COUNT</strong> β</td>  
+                                    <td style="font-size:12px">α must occur as many times as β</td>  
+                                    <td style="font-size:12px">
+                                    	<p>Promoter SAME_COUNT Gene</p>
+                                    	<p>p1 SAME_COUNT t1</p>
+                                    </td>  
+                                </tr>
+                                <tr>  
+                                    <td style="font-size:12px">α <strong>WITH</strong> β</td>  
+                                    <td style="font-size:12px">both, α and β must occur</td>  
+                                    <td style="font-size:12px">
+                                        <p>p WITH t</p>
+                                        <p>r WITH c</p>
+                                    </td>  
+                                </tr>  
+                                <tr>  
+                                    <td style="font-size:12px">α <strong>NOTWITH</strong> β</td>  
+                                    <td style="font-size:12px">α or β must occurs but not both.</td>  
+                                    <td style="font-size:12px">
+                                        <p>t1 NOTWITH t2</p>
+                                    </td>  
+                                </tr>  
+                                <tr>  
+                                    <td style="font-size:12px">α <strong>THEN</strong> β</td>  
+                                    <td style="font-size:12px">If α occurs, then β must occur too.</td>  
+                                    <td style="font-size:12px">
+                                        <p>p THEN t</p>
+                                    </td>  
+                                </tr>
+                            </tbody>  
+                        </table>
+                        <hr/>
+                </div>

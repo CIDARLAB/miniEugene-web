@@ -1,0 +1,383 @@
+                <div id="constraints">
+                        <h4>Constraints</h4>
+                        <p>We categorize the miniEugene constraints into the following types of constraints: counting, positioning, pairing, orientation, and interaction.</p>
+                        <br/>
+                        <!-- COUNTING RULES + TABLE -->
+                        <h4>Counting Constraints</h4>
+                        <p>Counting Constraints restrict the number of occurrences of genetic elements in a design. 
+                        </p>
+                        <table class="table table-striped">  
+                            <thead>  
+                                <tr>  
+                                    <th>Constraint</th>  
+                                    <th>Description</th>  
+                                    <th>Examples</th>  
+                                </tr>  
+                            </thead>  
+                            <tbody>  
+                                <tr>  
+                                    <td style="font-size:12px"><strong>CONTAINS</strong> α</td>  
+                                    <td style="font-size:12px">α must occur at least once</td>  
+                                    <td style="font-size:12px">
+                                        <p>CONTAINS Gene</p>
+                                        <p>CONTAINS GFP</p>
+                                    </td>  
+                                </tr>  
+                                <tr>  
+                                    <td style="font-size:12px"><strong>NOTCONTAINS</strong> α</td>  
+                                    <td style="font-size:12px">α must NOT occur in the design</td>  
+                                    <td style="font-size:12px">
+                                        <p>NOTCONTAINS RBS</p>
+                                        <p>NOTCONTAINS BBa_J61100</p>
+                                    </td>  
+                                </tr>  
+
+                                <tr>  
+                                    <td style="font-size:12px"> α <strong>EXACTLY</strong> <i>n</i> </td>  
+                                    <td style="font-size:12px">the number of occurrences of α must be equal to <i>n</i></td>
+                                    <td style="font-size:12px">
+                                    	<p>TranscriptionalUnit EXACTLY 4</p>  
+                                    	<p>Reporter EXACTLY 1</p>
+                                    </td>  
+                                </tr>  
+                                <tr>  
+                                    <td style="font-size:12px"> α <strong>NOTEXACTLY</strong> <i>n</i> </td>  
+                                    <td style="font-size:12px">the number of occurrences of α must be not equal to <i>n</i></td>
+                                    <td style="font-size:12px">
+                                    	<p>Operon NOTEXACTLY 4</p> 
+                                    	<p>Reporter NOTEXACTLY 1</p>
+                                    </td>  
+                                </tr>  
+                                <tr>  
+                                    <td style="font-size:12px">α <strong>MORETHAN</strong> <i>n</i></td>  
+                                    <td style="font-size:12px">α must occur more than <i>n</i> times</td>  
+                                    <td style="font-size:12px">
+                                    	<p>Operon MORETHAN 1</p>	
+                                    	<p>Promoter MORETHAN 1</p>
+                                    </td>
+                                </tr>
+                                <tr>  
+                                    <td style="font-size:12px">α <strong>NOTMORETHAN</strong> <i>n</i></td>  
+                                    <td style="font-size:12px">α must not occur more than <i>n</i> times</td>  
+                                    <td style="font-size:12px">
+                                    	<p>Terminator NOTMORETHAN 1</p>
+                                    	<p>GFP NOTMORETHAN 1</p>
+                                    </td>  
+                                </tr>
+                                <tr>  
+                                    <td style="font-size:12px">α <strong>SAME_COUNT</strong> β</td>  
+                                    <td style="font-size:12px">α must occur as many times as β</td>  
+                                    <td style="font-size:12px">
+                                    	<p>Promoter SAME_COUNT Gene</p>
+                                    	<p>p1 SAME_COUNT t1</p>
+                                    </td>  
+                                </tr>
+                                <tr>  
+                                    <td style="font-size:12px">α <strong>WITH</strong> β</td>  
+                                    <td style="font-size:12px">both, α and β must occur</td>  
+                                    <td style="font-size:12px">
+                                        <p>p WITH t</p>
+                                        <p>r WITH c</p>
+                                    </td>  
+                                </tr>  
+                                <tr>  
+                                    <td style="font-size:12px">α <strong>NOTWITH</strong> β</td>  
+                                    <td style="font-size:12px">α or β must occurs but not both.</td>  
+                                    <td style="font-size:12px">
+                                        <p>t1 NOTWITH t2</p>
+                                    </td>  
+                                </tr>  
+                                <tr>  
+                                    <td style="font-size:12px">α <strong>THEN</strong> β</td>  
+                                    <td style="font-size:12px">If α occurs, then β must occur too.</td>  
+                                    <td style="font-size:12px">
+                                        <p>p THEN t</p>
+                                    </td>  
+                                </tr>
+                            </tbody>  
+                        </table>
+                        <hr/>
+
+
+                        <!-- POSITIONAL RULES + TABLE-->
+                        <h4>Positioning Constraints</h4>
+                        Positioning Constraints restrict the location of the genetic elements' occurrences. 
+                        
+                        <table class="table table-striped">  
+                            <thead>  
+                                <tr>  
+                                    <th>Constraint</th>  
+                                    <th>Description</th>  
+                                    <th>Examples</th>  
+                                </tr>  
+                            </thead>  
+                            <tbody>  
+                                <tr>  
+                                    <td style="font-size:12px"><strong>STARTSWITH</strong> α</td>  
+                                    <td style="font-size:12px">if α occurs, then α must occur at the first position</td>  
+                                    <td style="font-size:12px">
+                                    	STARTSWITH p
+                                    </td>  
+                                </tr>  
+                                <tr>  
+                                    <td style="font-size:12px"><strong>ENDSWITH</strong> α</td>  
+                                    <td style="font-size:12px">if α occurs, then α must occur at the last position                                    
+                                    <td style="font-size:12px">
+										ENDSWITH t
+									</td>  
+                                </tr>
+                                <tr>  
+                                    <td style="font-size:12px">
+                                        α <strong>AFTER</strong> β<br/>
+                                        α <strong>ALL_AFTER</strong> β
+                                    </td>  
+                                    <td style="font-size:12px">If α appears in the design, then <br/>all β components must precede all α components.<br/>
+                                    <br/>(<strong>BEFORE</strong> is equivalent to <strong>ALL_BEFORE</strong>)
+                                    </td>  
+                                    <td style="font-size:12px">
+                                        c AFTER r<br/>
+                                        t ALL_AFTER p
+                                    </td>
+                                </tr>
+                                <tr>  
+                                    <td style="font-size:12px">α <strong>SOME_AFTER</strong> β</td>  
+                                    <td style="font-size:12px">If α appears in the design, then at least<br/>
+                                        one β component must precede at least one α component.
+                                    </td>  
+                                    <td style="font-size:12px">p SOME_AFTER t</td>  
+                                </tr>
+                                <tr>  
+                                    <td style="font-size:12px">
+                                        α <strong>BEFORE</strong> β<br/>
+                                        α <strong>ALL_BEFORE</strong> β
+                                    </td>  
+                                    <td style="font-size:12px">If α appears in the design, then <br/>
+                                    	all α components must precede all β components
+                                        <br/>
+                                        (<strong>BEFORE</strong> is equivalent to <strong>ALL_BEFORE</strong>)
+                                    </td>  
+                                    <td style="font-size:12px">
+                                        r BEFORE c<br/>
+                                        p ALL_BEFORE t
+                                    </td>  
+                                </tr>
+                                <tr>  
+                                    <td style="font-size:12px">α <strong>SOME_BEFORE</strong> β</td>  
+                                    <td style="font-size:12px">If α appears in the design, then at least<br/>
+                                        one α component must precede at least one β component
+                                    </td>  
+                                    <td style="font-size:12px">t SOME_BEFORE p</td>  
+                                </tr>
+                                <tr>  
+                                    <td style="font-size:12px">α <strong>NEXTTO</strong> β<br/>
+                                        α <strong>ALL_NEXTTO</strong> β
+                                    </td>  
+                                    <td style="font-size:12px">If α appears in the design, then all β components must appear
+                                        immediately before or after all α components<br/>
+                                                (<strong>NEXTTO</strong> is equivalent to <strong>ALL_NEXTTO</strong>)
+                                    </td>  
+                                    <td style="font-size:12px">r NEXTTO p
+                                        r ALL_NEXTTO c
+                                    </td>  
+                                </tr>
+                                <tr>  
+                                    <td style="font-size:12px">α <strong>SOME_NEXTTO</strong> β</td>  
+                                    <td style="font-size:12px">If α appears in the design, then <br/>
+                                    at least one β component must appear immediately before <br/>
+                                    or after at least one α component</td>  
+                                    <td style="font-size:12px">p SOME_NEXTTO t</td>  
+                                </tr>
+                            </tbody>  
+                        </table>
+                        <hr/>
+
+
+                        <!-- PAIRING RULES + TABLE -->
+                        <h4>Paring Constraints</h4>
+                        <p>Pairing Constraints restrict pair-wise occurrences of genetic elements.</p>
+                        <p><b>Note!</b>&nbsp;Eugene uses a zero-based indexing mechanism.</p>
+                        <table class="table table-striped">  
+                            <thead>  
+                                <tr>  
+                                    <th>Constraint</th>  
+                                    <th>Description</th>  
+                                    <th>Examples</th>  
+                                </tr>  
+                            <tbody>  
+                                <tr>  
+                                    <td style="font-size:12px">[i] <strong>EQUALS</strong> [j]</td>  
+                                    <td style="font-size:12px">the component at the i-th position must be equal to the component at the j-th position.</td>  
+                                    <td style="font-size:12px">
+                                        <p>[0] EQUALS [1]</p>
+                                    </td>  
+                                </tr>  
+                                <tr>  
+                                    <td style="font-size:12px">[i] <strong>NOTEQUALS</strong> [j]</td>  
+                                    <td style="font-size:12px">the component at i-th position must be different to the component at the j-th position.</td>  
+                                    <td style="font-size:12px">
+                                        <p>[0] NOTEQUALS [1]</p>
+                                    </td>  
+                                </tr>  
+                                <tr>  
+                                    <td style="font-size:12px">[i] <strong>EQUALS</strong> α</td>  
+                                    <td style="font-size:12px">the component at the i-th position must be the α component.</td>  
+                                    <td style="font-size:12px">
+                                        <p>[0] EQUALS Promoter</p>
+                                        <p>[1] EQUALS rbs</p>
+                                    </td>  
+                                </tr>  
+                            </tbody>  
+                        </table>
+
+                        <!-- ORIENTATION RULES -->
+                        <h4>Orientation Constraints</h4>
+                        Orientation Constraints restrict the orientation (forward or reverse) of genetic components.
+                        <table class="table table-striped">  
+                            <thead>  
+                                <tr>  
+                                    <th>Constraint</th>  
+                                    <th>Description</th>  
+                                    <th>Examples</th>  
+                                </tr>  
+                            </thead>  
+                            <tbody>  
+                                <tr>  
+                                    <td style="font-size:12px">
+                                    	<strong>ALL_FORWARD</strong>
+                                    </td>  
+                                    <td style="font-size:12px">
+                                    	all components in the design must have a forward orientation.
+                                    </td>  
+                                    <td style="font-size:12px">
+                                        ALL_FORWARD
+                                    </td>  
+                                </tr>  
+                                <tr>  
+                                    <td style="font-size:12px">
+                                    	<strong>ALL_REVERSE</strong>
+                                    </td>  
+                                    <td style="font-size:12px">
+                                    	all components in the design must have a reverse orientation.
+                                    </td>  
+                                    <td style="font-size:12px">
+                                        ALL_REVERSE
+                                    </td>  
+                                </tr>  
+                                <tr>  
+                                    <td style="font-size:12px">
+	                                    <strong>FORWARD</strong> α
+	                                    <br/>
+	                                    <strong>ALL_FORWARD</strong> α
+                                    </td>  
+                                    <td style="font-size:12px">
+                                    	all α must be forward oriented
+                                    	<br/>
+                                    	(<strong>FORWARD</strong> is equivalent to <strong>ALL_FORWARD</strong>)
+                                    </td>  
+                                    <td style="font-size:12px">
+                                        FORWARD promoter
+                                        <br/>
+                                        FORWARD GFP
+                                    </td>  
+                                </tr>  
+                                <tr>  
+                                    <td style="font-size:12px">
+	                                    <strong>REVERSE</strong> α
+	                                    <br/>
+	                                    <strong>ALL_REVERSE</strong> α
+                                    </td>  
+                                    <td style="font-size:12px">
+                                    	all α must be reverse oriented
+                                    	<br/>
+                                        (<strong>REVERSE</strong> is equivalent to <strong>ALL_REVERSE</strong>)
+                                    </td>  
+                                    <td style="font-size:12px">
+                                        REVERSE promoter
+                                        <br/>
+                                        REVERSE GFP
+                                    </td>  
+                                </tr>  
+                                <tr>  
+                                    <td style="font-size:12px">
+                                    	α <strong>SAME_ORIENTATION</strong> β
+                                    	<br/>
+                                    	α <strong>ALL_SAME_ORIENTATION</strong> β
+                                    </td>  
+                                    <td style="font-size:12px">
+                                    	if α and β appear in the design, then ALL occurrences of α <br/>
+                                    	must have the SAME ORIENTATION as β.<br/> 
+                                        (<strong>SAME_ORIENTATION</strong> is equivalent to <strong>ALL_SAME_ORIENTATION</strong>)
+                                    </td>
+                                    <td style="font-size:12px">
+                                        Promoter SAME_ORIENTATION Terminator
+                                        pBad ALL_SAME_ORIENTATION t7
+                                    </td>  
+                                </tr>  
+                                <tr>  
+                                    <td style="font-size:12px">
+                                    	<strong>ALTERNATE_ORIENTATION</strong>
+                                    </td>  
+                                    <td style="font-size:12px">
+                                    	the orientation of the design's component must alternate.
+                                    </td>  
+                                    <td style="font-size:12px">
+                                        ALTERNATE_ORIENTATION
+                                    </td>  
+                                </tr>  
+                            </tbody>
+                        </table>
+
+                        <!-- INTERACTION RULES -->
+                        <h4>Interaction Constraints</h4>
+                        <p>Interaction Constraints constrain (regulatory) interactions and relations among components in a genetic design.</p>
+                        <table class="table table-striped">  
+                            <thead>  
+                                <tr>  
+                                    <th>Constraint</th>  
+                                    <th>Description</th>  
+                                    <th>Examples</th>  
+                                </tr>  
+                            </thead>  
+                            <tbody>  
+                                <tr>  
+                                    <td style="font-size:12px">
+                                    	α <strong>REPRESSES</strong> β
+                                    </td>  
+                                    <td style="font-size:12px">
+                                    	If α and β appear in the design, then <br/>
+                                    	the α and β have a REPRESSES relationship.
+                                    </td>  
+                                    <td style="font-size:12px">
+                                        tetR REPRESSES pTet
+                                    </td>  
+                                </tr>  
+                                <tr>  
+                                    <td style="font-size:12px">
+                                    	α <strong>INDUCES</strong> β
+                                    </td>  
+                                    <td style="font-size:12px">
+                                    	If β appears in the design, then <br/>
+                                    	the α INDUCES the β component.
+                                    </td>  
+                                    <td style="font-size:12px">
+                                        aTc INDUCES pBad
+                                    </td>  
+                                </tr>  
+                                <tr>  
+                                    <td style="font-size:12px">
+                                    	α <strong>DRIVES</strong> β
+                                    </td>  
+                                    <td style="font-size:12px">
+                                    	If α and β appear in the design, then α and β have the same orientation,<br/>
+                                        α occurs upstream of β, and between α and β does NOT appear any terminator.<br/> 
+                                        We say, α DRIVES the expression of the β.
+                                    </td>  
+                                    <td style="font-size:12px">
+                                        <p>Promoter DRIVES Repressor</p>
+                                        <p>pTet DRIVES GFP</p>
+                                    </td>  
+                                </tr>  
+							</tbody>
+						</table>
+
+                </div>

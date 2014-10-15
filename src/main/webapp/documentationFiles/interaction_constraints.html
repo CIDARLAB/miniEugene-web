@@ -1,0 +1,55 @@
+<div id="interaction-constraints">
+                        <!-- INTERACTION RULES -->
+                        <h4>Interaction Constraints</h4>
+                        <p>Interaction Constraints constrain (regulatory) interactions and relations among components in a genetic design.</p>
+                        <table class="table table-striped">  
+                            <thead>  
+                                <tr>  
+                                    <th>Constraint</th>  
+                                    <th>Description</th>  
+                                    <th>Examples</th>  
+                                </tr>  
+                            </thead>  
+                            <tbody>  
+                                <tr>  
+                                    <td style="font-size:12px">
+                                    	α <strong>REPRESSES</strong> β
+                                    </td>  
+                                    <td style="font-size:12px">
+                                    	If α and β appear in the design, then <br/>
+                                    	the α and β have a REPRESSES relationship.
+                                    </td>  
+                                    <td style="font-size:12px">
+                                        tetR REPRESSES pTet
+                                    </td>  
+                                </tr>  
+                                <tr>  
+                                    <td style="font-size:12px">
+                                    	α <strong>INDUCES</strong> β
+                                    </td>  
+                                    <td style="font-size:12px">
+                                    	If β appears in the design, then <br/>
+                                    	the α INDUCES the β component.
+                                    </td>  
+                                    <td style="font-size:12px">
+                                        aTc INDUCES pBad
+                                    </td>  
+                                </tr>  
+                                <tr>  
+                                    <td style="font-size:12px">
+                                    	α <strong>DRIVES</strong> β
+                                    </td>  
+                                    <td style="font-size:12px">
+                                    	If α and β appear in the design, then α and β have the same orientation,<br/>
+                                        α occurs upstream of β, and between α and β does NOT appear any terminator.<br/> 
+                                        We say, α DRIVES the expression of the β.
+                                    </td>  
+                                    <td style="font-size:12px">
+                                        <p>Promoter DRIVES Repressor</p>
+                                        <p>pTet DRIVES GFP</p>
+                                    </td>  
+                                </tr>  
+							</tbody>
+						</table>
+
+</div>

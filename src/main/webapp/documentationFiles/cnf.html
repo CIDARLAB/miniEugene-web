@@ -1,0 +1,14 @@
+                <div id="basic_syntax">
+                    <h4>Disjunction of Constraints</h4>
+                        <p>miniEugene supports the <a href="http://en.wikipedia.org/wiki/Conjunctive_normal_form" target="_blank">conjunctive normal form</a>, i.e., a conjunction of disjunctions. 
+                        A line feed indicates a conjunction. In one line, it is possible to specify disjunctive constraints.</p>
+                        <p>Examples:<br/> 
+                        1. The desired design must contain a, and b, and c or d.<br/>
+                        <pre>
+CONTAINS a
+CONTAINS b
+CONTAINS c OR CONTAINS d</pre>
+                        2. All components in the design must be either forward or reverse oriented.<br/>
+                        <pre>
+ALL_FORWARD OR ALL_REVERSE</pre>
+                </div>
