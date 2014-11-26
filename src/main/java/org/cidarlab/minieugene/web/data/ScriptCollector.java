@@ -66,7 +66,7 @@ public class ScriptCollector
 		if(!fPath.exists()) {
 			fPath.mkdir();
 		}
-		return new File(this.path+"/"+System.nanoTime()+".eug");
+		return new File(this.path+"/"+System.nanoTime()+".me");
 	}
 	
 	private void writeToFile(String sScript, File f) {

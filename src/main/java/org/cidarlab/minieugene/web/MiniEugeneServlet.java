@@ -85,12 +85,8 @@ public class MiniEugeneServlet
     	super.init(servletConfig);
     	
     	// create the data directory
-    	DATA_DIRECTORY = servletConfig.getInitParameter("DATA_DIRECTORY");
-		File data = new File(DATA_DIRECTORY);
-		if(!data.exists()) {
-			data.mkdir();
-			data.mkdirs();
-		}
+    	DATA_DIRECTORY = Paths.get(this.getServletContext().getRealPath(""), "data", "scripts").toString();
+        new File(DATA_DIRECTORY).mkdirs();
 
 		// DIRECTORY FOR PIGEON IMAGES
 		PIGEON_DIRECTORY = Paths.get(this.getServletContext().getRealPath(""), "data", "pigeon").toString();
