@@ -60,6 +60,12 @@
 			<name>OSS Sonatype Staging</name>
 			<url>https://oss.sonatype.org/content/groups/staging</url>
 		</repository>
+		
+		<repository>
+			<id>org.jacop</id>
+			<name>The JaCoP solver</name>
+			<url>http://sourceforge.net/projects/jacop-solver/</url>
+		</repository>
 	</repositories>
 
     <dependencies>
@@ -135,11 +141,9 @@
 		
 		<!--  JaCoP -->
 		<dependency>
-		    <artifactId>org</artifactId>
-		    <groupId>jacop</groupId>
-		    <version>4.1.0</version>
-		    <scope>system</scope>
-		    <systemPath>${basedir}/src/main/webapp/WEB-INF/lib/jacop-4.1.0.jar</systemPath>
+			<groupId>org</groupId>
+			<artifactId>jacop</artifactId>
+			<version>4.1.0</version>
 		</dependency>
 		
 		<!--  again, why are the following dependencies not 

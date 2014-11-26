@@ -64,6 +64,11 @@ public class MiniEugeneServlet
 	private static final String SOLVE = "solve";
 	private static final int NR_OF_SOLUTIONS = 50000;
 	
+	private static String DATA_DIRECTORY;
+	private static String PIGEON_DIRECTORY;
+	private static String SBOL_DIRECTORY;
+	private static String EUGENE_DIRECTORY;
+	
     @Override
     public void init()
             throws ServletException {
@@ -78,6 +83,26 @@ public class MiniEugeneServlet
     public void init(ServletConfig servletConfig) 
     		throws ServletException{
     	super.init(servletConfig);
+    	
+    	// create the data directory
+    	DATA_DIRECTORY = servletConfig.getInitParameter("DATA_DIRECTORY");
+		File data = new File(DATA_DIRECTORY);
+		if(!data.exists()) {
+			data.mkdir();
+			data.mkdirs();
+		}
+
+		// DIRECTORY FOR PIGEON IMAGES
+		PIGEON_DIRECTORY = Paths.get(this.getServletContext().getRealPath(""), "data", "pigeon").toString();
+        new File(PIGEON_DIRECTORY).mkdirs();
+
+        // DIRECTORY FOR EUGENE FILES
+        EUGENE_DIRECTORY = Paths.get(this.getServletContext().getRealPath(""), "data", "eugene").toString();
+        new File(EUGENE_DIRECTORY).mkdirs();
+
+        // DIRECTORY FOR SBOL FILES
+        SBOL_DIRECTORY = Paths.get(this.getServletContext().getRealPath(""), "data", "sbol").toString();
+        new File(SBOL_DIRECTORY).mkdirs();
     }
     
     /**
@@ -217,23 +242,17 @@ public class MiniEugeneServlet
             long T1 = System.nanoTime();
             
             // pigeon
-            String pigeonFilePath = Paths.get(this.getServletContext().getRealPath(""), "pigeon").toString();
-            new File(pigeonFilePath).mkdirs();
-            String imageName = pigeonFilePath+"/"+uuid+".png";
+            String imageName = PIGEON_DIRECTORY+"/"+uuid+".png";
             se.pigeonize(imageName, null, true, 10);
-            returnJSON.put("pigeon", "./pigeon/"+uuid+".png");
+            returnJSON.put("pigeon", "data/pigeon/"+uuid+".png");
 
             // Eugene 
-            String eugeneFilePath = Paths.get(this.getServletContext().getRealPath(""), "data", "eugene").toString();
-            new File(eugeneFilePath).mkdirs();
-            String eugeneFile = eugeneFilePath+"/"+uuid+".eug";
+            String eugeneFile = EUGENE_DIRECTORY+"/"+uuid+".eug";
             se.toEugene(eugeneFile);
             returnJSON.put("eugene", "data/eugene/"+uuid+".eug");
             
             // SBOL
-            String sbolFilePath = Paths.get(this.getServletContext().getRealPath(""), "data", "sbol").toString();
-            new File(sbolFilePath).mkdirs();
-            String sbolFile = sbolFilePath+"/"+uuid+".sbol";
+            String sbolFile = SBOL_DIRECTORY+"/"+uuid+".sbol";
             se.toSBOL(sbolFile);            
             returnJSON.put("sbol", "data/sbol/"+uuid+".sbol");
         	
@@ -323,11 +342,7 @@ public class MiniEugeneServlet
     	/*
     	 * get the path (of the servlet context)
     	 */
-        String scriptPath = Paths.get(
-        		this.getServletContext().getRealPath(""), 
-        		"data", 
-        		"scripts", 
-        		sessionId).toString();
+    	String scriptPath = Paths.get(DATA_DIRECTORY, sessionId).toString();
 
         /*
          * start a thread (the script collector) that 
