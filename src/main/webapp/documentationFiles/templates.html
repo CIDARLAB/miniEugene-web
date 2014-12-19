@@ -3,10 +3,9 @@
                     <h4>Templating Constraints</h4>
                     	<p>Consider the following required design: 
                     	<pre>p, r, c, t, p, r, c, t</pre>
-                    	The provided set of primitive constraints in miniEugene is not expressive enough to specify such types 
-                    	of synthetic biology designs. Therefore, we augmented miniEugene with <strong>Templating Constraints</strong>. 
+                    	miniEugene provides <strong>Templating Constraints</strong> for the specification of such patterns.  
 						<br/> 
-                    	<p>We offer the following <strong>Templating Constraints</strong>:
+						<p>Specifically:
                     	<ul>
                     	<li>A <strong>Template</strong> constrains designs to comply with a specified list of components.<br/>
                     	Template constraints require that the <strong>Length of the design</strong> is a <strong>multiple</strong> of the 
@@ -48,7 +47,6 @@ template [p1|p2], [c1|c2]</pre>
                     	</ul>
                     	
                     	<br/>
-                    	<br/>
                     	
                     	<li>A <strong>Sequence</strong> restricts that a set of components that must occur in a particular order. Sequences 
                     	require that the <strong>Length of the design</strong> is <strong>greater or equal</strong> then the <strong>number of 
@@ -86,40 +84,24 @@ _, _, -p, -r, -c, -t</pre>
 -c</pre>
                     	</li>
 						</ul>
-<!--  
-                    	<li>A <strong>Group</strong> constraint defines an unordered set of components that always appear together. miniEugene 
-                    	builds all permutations of the group components.<br/> 
-                    	For example, a 
-                    	<pre>
-group p, r, c, t</pre> 
-						constraint and a provided length of 6 results in the following set of designs ('_' denotes place holders):<br/>
-                    	<pre>
-p, r, c, t, _, _
-p, r, t, c, _, _
-p, c, r, t, _, _
-p, c, t, r, _, _
-...
-_, p, r, c, t, _
-_, p, r, t, c, _
-...
-_, _, t, c, r, p
-_, _, t, c, p, r</pre>
--->
-                    	</ul>
-                    	<br/>
-                    	It is, of course, possible to utilize miniEugene's <strong>Templating Constraints</strong> in conjunction (and disjunction) with 
-                    	all other provided constraints. See the <a id = "examples1" href = "#">Examples</a> section for more detailed examples.
-                    	<br/>
+						
                     	<br/>
                     	<strong>Note!</strong>
                     	<ul>
-                    	<li>Currently, <strong>Templating Constraints</strong> are not efficiently implemented. As soon as we've solved this problem, 
-                    	we'll announce it properly on this website.
+                    	<li><strong>Templating Constraints</strong> can be utilized in conjunction (and disjunction) with 
+                    	all other provided constraints.
                     	</li>
-                    	<li><strong>Templating Constraints</strong> do not allow features to constrain the orientation of the 
-                    	constraint components. Please specify additional <a id = "orientation_constraints1" href = "#">Orientation Constraints</a>.
+                    	<li><strong>Templating Constraints</strong> are syntactic sugar of miniEugene and can degrade the efficiency of the design space 
+                    	exploration process. 
+                    	</li>
+                    	<li><strong>Templating Constraints</strong> do not support the specification of desired orientations of the 
+                    	components. Additional <a id = "orientation_constraints1" href = "#">Orientation Constraints</a> must be specified 
+                    	to restrict or ensure desired orientations.
                     	</li> 
                     	</ul>
+                    	
+                    	<br/>
+                    	See the <a id = "examples1" href = "#">Examples</a> section for more detailed examples.
                     	
                 </div>
                 

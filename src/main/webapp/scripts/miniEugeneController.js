@@ -5,7 +5,9 @@
 
 $(document).ready(function() {
 
-    //$('#runButton') jquery syntax
+    
+
+   	//$('#runButton') jquery syntax
     //assigns various functions to the run button when clicked
     $('#runButton').click(function() {
         

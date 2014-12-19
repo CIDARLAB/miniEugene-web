@@ -5,7 +5,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.cidarlab</groupId>
   <artifactId>miniEugene-web</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  <version>1.0.0</version>
   <packaging>war</packaging>
   
   <build>
@@ -30,20 +30,6 @@
         </configuration>
       </plugin>
 
-		<!--  
-		<plugin>
-	        <groupId>org.codehaus.mojo</groupId>
-	        <artifactId>exec-maven-plugin</artifactId>
-	        <version>1.1</version>
-	        <executions>
-	          <execution><goals><goal>java</goal></goals></execution>
-	        </executions>
-	        <configuration>
-	          <mainClass>org.cidarlab.eugenelab.EugeneLabHandler</mainClass>
-	        </configuration>
-	    </plugin>
-      	-->
-      
 		<plugin>
 		  <groupId>org.eclipse.jetty</groupId>
 		  <artifactId>jetty-maven-plugin</artifactId>
@@ -130,7 +116,7 @@
 		<dependency>
 			<groupId>org.cidarlab</groupId>
   			<artifactId>miniEugene-core</artifactId>
-  			<version>0.0.1-SNAPSHOT</version>		
+  			<version>1.0.0</version>		
 		</dependency>
 		
 		<!--  ANTLR 

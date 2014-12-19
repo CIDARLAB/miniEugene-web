@@ -54,6 +54,10 @@
         <div class="row-fluid fill">
             <div class="span2" style="font-size:11px">
             <b>Updates</b>:<br/>
+            <i>12/19/2014</i>
+            <ul>
+            	<li>Our ACS Synthetic Biology Technical Note on miniEugene has been published. <a href="http://pubs.acs.org/doi/abs/10.1021/sb500352b" target="_blank">DOI:10.1021/sb500352b</a></li>
+            </ul>
             <i>05/02/2014</i>
             <ul>
             	<li>Improved Pigeon Visualization</li>
@@ -90,14 +94,19 @@
                     <ul id="dataTableHeader" class="nav nav-tabs nav-pills">
                         <li class="pull-left">
 	                        Length of the Design: 
-							<select name="sizeOfDesign" id="sizeOfDesign" style="width:50px"></select>
-						    <script>
-						    var $select = $('#sizeOfDesign');
-						    for ( var i = 1; i <= 50; i++ ) {
-						        $select.append($('<option/>', { value: i, text: i }));
-						    }
-						   	</script>                        
-                        </li>
+							<select name="sizeOfDesign" id="sizeOfDesign" style="width:50px">
+								<script>
+        							for(i=1; i<=100; i++) {  
+            							document.write('<option value="' + i +'"');
+            							if(i==5) {
+            								document.write('selected=true');
+            							}
+            							document.write('>' + i + '</option>');
+        							}
+    							</script>
+    						</select>
+    						
+                            </li>
                         <li class="pull-right">
                         	<button style="width:150px" id="runButton" class="btn btn-danger">Solve</button>
                         </li>
@@ -116,7 +125,28 @@
                                     </div>-->
                                     <div id="editorArea" class="accordion-body collapse in">
                                         <div class="accordion-inner">
-                                            <textarea id="textEditor">CONTAINS p</textarea>
+                                            <textarea id="textEditor">// COUNTING CONSTRAINTS
+CONTAINS p1
+CONTAINS c1
+CONTAINS p2
+CONTAINS c2
+CONTAINS cReporter
+
+// POSITIONING CONSTRAINTS
+c1 BEFORE p2
+p2 BEFORE p1
+p1 BEFORE c2
+cReporter AFTER c2
+
+// ORIENTATION CONSTRAINTS
+REVERSE c1
+REVERSE p2
+FORWARD p1
+FORWARD c2
+
+// SPECIFICATION OF INTERACTIONS
+c1 REPRESSES p1
+c2 REPRESSES p2</textarea>
                                         </div>
                                     </div>
                                 </div>
