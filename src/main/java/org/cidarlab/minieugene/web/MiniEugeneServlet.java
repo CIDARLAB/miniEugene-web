@@ -53,7 +53,9 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 /**
- *
+ * The MiniEugeneServlet class implements the Back-End Logic of 
+ * the miniEugene web application. It only serves HTTP POST requests.
+ * 
  * @author Ernst Oberortner
  */
 public class MiniEugeneServlet 
@@ -114,7 +116,7 @@ public class MiniEugeneServlet
             throws ServletException, IOException {
     	
     	// not GET requests allowed ...
-
+    	throw new ServletException("Invalid request!");
     }
 
     /**
@@ -126,12 +128,13 @@ public class MiniEugeneServlet
      * @throws IOException if an I/O error occurs
      */
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) 
+    		throws IOException {
         processPostRequest(request, response);
     }
 
     /**
-     * Returns a short description of the servlet.
+     * Returns a short description of the Servlet.
      *
      * @return a String containing the servlet's description
      */
@@ -150,6 +153,7 @@ public class MiniEugeneServlet
             response.setContentType("application/json");
             out = response.getWriter();
             String command = request.getParameter("command");
+            
             /*
              * SOLVE the problem
              */
@@ -185,6 +189,16 @@ public class MiniEugeneServlet
     }
 
 
+    /**
+     * The executeMiniEugene method gets as input the request parameters of 
+     * the HTTP POST request and instructs miniEugene to solve the problem. 
+     *  
+     * @param sessionId
+     * @param N
+     * @param input
+     * @param nrOfSolutions
+     * @return
+     */
     public JSONObject executeMiniEugene(
             String sessionId, 
             int N, String input, int nrOfSolutions) {
@@ -283,9 +297,13 @@ public class MiniEugeneServlet
     }
     
     /**
+     * The buildScript(int, String[]) method compiles 
+     * a miniEugene web-app script into the miniEugene language.
+     * That is, it compiles the length of the design into 
+     * a miniEugene "N=n." and it replaces LINE FEEDS with dots ('.')
      * 
-     * @param N
-     * @param rules
+     * @param N  ... the length of the design
+     * @param rules ... an array of rules
      * @return
      */
 	public String buildScript(int N, String[] rules) {
@@ -310,15 +328,16 @@ public class MiniEugeneServlet
 	}
     
 
+	/**
+	 * The processStatistics method generates HTML code for displaying 
+	 * the statistic of a miniEugene run.
+	 *  
+	 * @param mes ... an object of statistics
+	 * 
+	 * @return a String the contains a HTML representation of the statistics
+	 */
     private String processStatistics(MiniEugeneStatistics mes) {
-        /*
-         * var stats = '<div><table class="table table-bordered table-hover" id="outputList"><thead><tr><th>Name</th><th>Value</th><th></th></tr></thead><tbody>';
-                    	$.each(response["stats"], function() {
-                    		stats = stats + '<tr><td>' + this["name"] + '</td><td>' + this["value"] + '</td></tr>';
-                        });
-                    	stats = stats + '</tbody></table></div>';
-
-         */
+    	
     	StringBuilder sb = new StringBuilder();
     	sb.append("<div><table class=\"table table-bordered table-hover\" id=\"outputList\">")
     	  .append("<thead><tr><th>Name</th><th>Value</th><th></th></tr></thead><tbody>");
@@ -334,6 +353,13 @@ public class MiniEugeneServlet
     	return sb.toString();
     }
     
+    /**
+     * The collectScript method stores the executed miniEugene scripts 
+     * into the miniEugene DATA_DIRECTORY.
+     *  
+     * @param sessionId
+     * @param script
+     */
     private void collectScript(String sessionId, String script) {
     	/*
     	 * get the path (of the servlet context)
