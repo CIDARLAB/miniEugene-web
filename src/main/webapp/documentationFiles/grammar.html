@@ -1,19 +1,24 @@
 <div id="grammar">
 <h4>The Grammar of the miniEugene Language</h4>
 
-<p>The provided syntax in this Web-based miniEugene UI is a subset of miniEugene's grammar. 
+<p>miniEugene supports the <a href="http://en.wikipedia.org/wiki/Conjunctive_normal_form" target="_blank">conjunctive normal form</a>, i.e., a conjunction of disjunctions. 
+A line feed indicates a conjunction.
+<br/><br/>
+The grammar of the miniEugene language is specified in the Extended Backus-Naur Form (EBNF). 
+Words in double-quotes (e.g. "NOT") are reserved words, must be specified, and cannot be used as IDs.
+The question mark character ('?') denotes optional words and the pipe character ('|') denotes selections. 
 
 <pre>
 script                = (cnf)+
 
-cnf                   = constraint ("or" cnf)? LINE_FEED 
+cnf                   = constraint (("OR" | "or") cnf)? LINE_FEED 
 
-constraint            = ("NOT")? 
+constraint            = (("NOT" | "not"))? 
                         ( 
                         ( (operand)? primitive_constraint (operand)? ) 
                         | 
-                          templating 
-                        )
+                          template_constraint 
+                        )
 
 operand               = ID | INT | index
 
@@ -21,7 +26,7 @@ index                 = "[" INT "]"
 
 constraint_operator   = ["contains"|"CONTAINS"| ... |"drives"|"DRIVES"]
 
-templating            = (ID)? template_operator list_of_ids
+template_constraint   = template_operator list_of_ids
 
 template_operator     = ["template"|"TEMPLATE"|"sequence"|"SEQUENCE"]
 
@@ -36,29 +41,4 @@ INT                   = [0-9]+
 
 <br/>
 
-<!--  
-<pre>
-script                = (length)? (cnf)+
-
-length                = "N" "=" number "."
-
-cnf                   = constraint ("or" constraint)* "." 
-
-constraint            = ("NOT")? ( (id)? constraint_operator (id)? ) | templating
-
-templating            = templating_constraint list_of_ids
-
-templating_constraint = (name)? tconstraint_operator list_of_parameters
-
-tconstraint_operator  = ["template"|"TEMPLATE"|"sequence"|"SEQUENCE"]
-
-list_of_parameters    = ( "[" selection "]" | id ) ("," list_of_parameters)?
-
-selection             = id ( "|" selection )? 
-
-id                    = [a-zA-Z]+
-
-number                = [0-9]+
-</pre> 
--->
 </div>
