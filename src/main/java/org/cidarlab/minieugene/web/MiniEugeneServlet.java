@@ -252,9 +252,15 @@ public class MiniEugeneServlet
             long T1 = System.nanoTime();
             
             // pigeon
-            String imageName = PIGEON_DIRECTORY+"/"+uuid+".png";
-            se.pigeonize(imageName, null, true, 10);
-            returnJSON.put("pigeon", "data/pigeon/"+uuid+".png");
+//            String imageName = PIGEON_DIRECTORY+"/"+uuid+".png";
+            //se.pigeonize(imageName, null, true, 10);
+            String imageName = se.genPigeonImage(10, uuid);
+            String imagePath = "/usr/local/tomcat/pigeon_design.png";
+
+            String test = System.getProperty("user.dir");
+            returnJSON.put("pigeon", "/data/pigeon/"+ imageName + ".png");
+            //se.deleteOld(name);
+            //"data/pigeon/"+uuid+".png"
 
             // Eugene 
             String eugeneFile = EUGENE_DIRECTORY+"/"+uuid+".eug";

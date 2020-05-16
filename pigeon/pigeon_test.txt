@@ -1,0 +1,7 @@
+p p1 13
+c c2 3
+r r1 4
+d d1 2
+s stop 7
+c c2 3
+p p4 6
