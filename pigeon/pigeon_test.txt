@@ -1,7 +1,7 @@
-p p1 13
-c c2 3
-r r1 4
-d d1 2
-s stop 7
-c c2 3
-p p4 6
+5 EX
+t T1 6
+= BB 14
+p lambdaPr 4
+<5 SP
+v pSB1A2
+# Arcs

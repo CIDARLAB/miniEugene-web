@@ -1,15 +1,20 @@
 [[source]]
+
 name = "pypi"
 url = "https://pypi.org/simple"
 verify_ssl = true
 
+
 [dev-packages]
-pyinstaller = "*"
-v = {editable = true,version = "*"}
+
+
 
 [packages]
+
 matplotlib = "*"
 "antlr4-python3-runtime" = "*"
 
+
 [requires]
+
 python_version = "3.8"

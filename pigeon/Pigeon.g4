@@ -27,6 +27,8 @@ pigeoncommands
     |  zring
     |  xbar
     |  box
+    |  scar
+    |  vector
     ;
 
 
@@ -39,18 +41,20 @@ fseq : (invert 'f' | 'f') WS? label?  WS? color? WS? ignorecolor? NL+ ;
 
 
 
-stop : 's' WS? label?  WS? color? WS? ignorecolor? NL+;
-operator : 'o' WS? label?  WS? color? WS? ignorecolor? NL+;
-degredationtag : 'd' WS? label?  WS? color? WS? ignorecolor? NL+;
-righttriangle : '>' WS? label? WS? color? WS? ignorecolor? NL+ ; // not sure this need labels
-lefttriangle : '<' WS? label? WS? color? WS? ignorecolor? NL+ ; // not sure this needs labels
-bar : '|' WS? label? WS? color? WS? ignorecolor? NL+ ;
-three : '3' WS? label? WS? color? WS? ignorecolor? NL+ ;
-five : '5' WS? label? WS? color? WS? ignorecolor? NL+ ;
-zring : 'z' WS? label? WS? color? WS? ignorecolor? NL+ ;
-xbar : 'x' WS? label? WS? color? WS? ignorecolor? NL+ ;
-box : '?' WS? label? WS? color? WS? ignorecolor? NL+ ;
+stop : 's' WS* label?  WS* color? WS* ignorecolor? NL+;
+operator : 'o' WS* label?  WS* color? WS* ignorecolor? NL+;
+degredationtag : 'd' WS* label?  WS* color? WS* ignorecolor? NL+;
+righttriangle : '>' WS* label? WS* color? WS* ignorecolor? NL+ ; // not sure this need labels
+lefttriangle : '<' WS* label? WS* color? WS* ignorecolor? NL+ ; // not sure this needs labels
+bar : '|' WS* label? WS* color? WS* ignorecolor? NL+ ;
+three : invert? '3' WS* label? WS* color? WS* ignorecolor? NL+ ;
+five : invert? '5' WS* label? WS* color? WS* ignorecolor? NL+ ;
+zring : invert? 'z' WS* label? WS* color? WS* ignorecolor? NL+ ;
+xbar : 'x' WS* label? WS* color? WS* ignorecolor? NL+ ;
+box : '?' WS* label? WS* color? WS* ignorecolor? NL+ ;
+scar: '=' WS* label? WS* color? WS* ignorecolor? NL+ ;
 
+vector: 'v' WS? label? NL+;
 
 
 invert : '<';
@@ -82,7 +86,7 @@ ind : label WS 'ind' WS label NL+;
 Lexer Rules
 */
 
-ID  :	('a'..'z'|'A'..'Z'|'_'| '[' | ']')+ ;
+ID  :	('a'..'z'|'A'..'Z'| '_'| '-'| '[' | ']')('a'..'z'|'A'..'Z'|'0'..'9'| '_'| '-'| '[' | ']')* ;
 INT :   [0-9]+ ;
 LINE_COMMENT : '#' ~[\r\n]* -> skip;
 WS  :   ' '+;

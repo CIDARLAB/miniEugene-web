@@ -33,6 +33,17 @@ class HtmlPigeonListener(PigeonListener):
         rep2_name = ''
         glyphToGlyphInd = False
 
+        _has_vector = False
+        _vector_label = None
+
+        @property
+        def has_vector(self):
+            return self._has_vector
+
+        @property
+        def vector_label(self):
+            return self._vector_label
+
         def clear_cur_part(self):
             self.part_type = ''
             self.name = ''
@@ -369,6 +380,21 @@ class HtmlPigeonListener(PigeonListener):
             # print('exitFive')
             pass
 
+        def enterScar(self, ctx: PigeonParser.ScarContext):
+            self.part_type = 'Scar'
+            self.color = (0.0, 0.0, 0.0)
+            self.label_y_offset = -8
+
+        def exitScar(self, ctx: PigeonParser.ScarContext):
+            self.cur_part = {'type': self.part_type, 'name': self.name, 'fwd': self.fwd,
+                             'opts': {'color': self.color, 'label': self.name,
+                                      'label_y_offset': self.label_y_offset, 'label_style': 'italic',
+                                      'label_size': 3.5, 'start_pad': 4.0, 'end_pad': 4.0,
+                                      'y_extent': 1.5, 'x_extent': 10, 'linewidth': 1.5}}
+            self.design += [self.cur_part]
+            self.clear_cur_part()
+
+
         def enterGene(self, ctx:PigeonParser.CodingseqContext):
             self.part_type = 'CDS'
             self.color = (0.0, 0.0, 0.0)
@@ -466,6 +492,10 @@ class HtmlPigeonListener(PigeonListener):
             self.clear_cur_part()
             # print('exitBox')
             pass
+
+        def exitVector(self, ctx: PigeonParser.VectorContext):
+            self._has_vector = True
+            self._vector_label = self.name
 
         # Enter a parse tree produced by PigeonParser#label.
         def enterLabel(self, ctx: PigeonParser.LabelContext):
@@ -606,12 +636,5 @@ class HtmlPigeonListener(PigeonListener):
         def exitRep2(self, ctx:PigeonParser.Rep2Context):
             print('exitRep2')
             pass
-
-
-
-
-
-
-#del HtmlPigeonListener
 
 
