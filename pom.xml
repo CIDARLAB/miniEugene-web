@@ -53,6 +53,11 @@
 			<name>OSS Sonatype Staging</name>
 			<url>https://oss.sonatype.org/content/groups/staging</url>
 		</repository>
+		<repository>
+			<id>jboss-maven2-release-repository</id>
+			<name>JBoss 3rd-party Repository</name>
+			<url>https://repository.jboss.org/nexus/content/repositories/thirdparty-releases/</url>
+		</repository>
 	</repositories>
 
     <dependencies>
@@ -113,7 +118,10 @@
 		<dependency>
 			<groupId>org.cidarlab</groupId>
   			<artifactId>miniEugene-core</artifactId>
-  			<version>1.0.0</version>		
+  			<version>1.0.0</version>
+			<scope>system</scope>
+    		<systemPath>${project.basedir}/lib/miniEugene-core-1.0.0-jar-with-dependencies.jar</systemPath>
+		
 		</dependency>
 		
 		<!--  ANTLR 
@@ -131,6 +139,8 @@
 			<groupId>org</groupId>
 			<artifactId>jacop</artifactId>
 			<version>4.1.0</version>
+			<scope>system</scope>
+    		<systemPath>${project.basedir}/lib/jacop-4.1.0.jar</systemPath>
 		</dependency>
 		
 		<!--  again, why are the following dependencies not 
@@ -178,8 +188,14 @@
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<version>4.11</version>
+
+		<!-- To serve up tomcat -->
 		</dependency>
-		
+		<dependency>
+			<groupId>commons-digester</groupId>
+			<artifactId>commons-digester</artifactId>
+			<version>2.1</version>
+		</dependency>
 		
       </dependencies>
 </project>	
